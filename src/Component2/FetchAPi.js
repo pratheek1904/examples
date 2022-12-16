@@ -1,44 +1,68 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
 const FetchAPi = () => {
-    const[search,setSearch]=useState("")
-    const[posts,setposts]=useState([])
-    useEffect(()=>{
-        fetch("https://jsonplaceholder.typicode.com/todos")
-        .then((res)=>{
-            return res.json()
-        }).then((data)=>{
-            // console.log(data)
-            setposts(data)
-        })
-    },[])
+  const [search, setsearch] = useState("");
+  const [posts, setposts] = useState([]);
+  const getUsers = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const data = await response.json();
+    setposts(data);
+  };
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <div>
-    <input
-        type="text"
-        placeholder="Search here"
+      <input 
+      type="text"
+        placeholder="enter here"
         value={search}
-        onChange={(e)=>setSearch(e.target.value)}
-    />
-      {
-        posts.filter((value)=>{
-            if(value==""){
-                return value
-            }
-            else if(value.title.toLowerCase().includes(search.toLowerCase())){
-                return value
-            }
-        })
-        .map((elem)=>{
-            return(
-            <div key={elem.id}>
-            <p >{elem.title}</p>
+        onChange={(e)=>setsearch(e.target.value)}
+      />
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+        </tr>
+        <td>
+        {
+        posts.filter((elem)=>{
+          if(search==""){
+            return elem
+          }
+          else if(elem.title.toLowerCase().includes(search.toLowerCase())){
+            return elem.title
+          }
+        }).map((eleM)=>{
+          return(
+            <div key={eleM.id}>
+              <tr>{eleM.id}</tr>
             </div>
-            )
+          )
         })
       }
+        </td>
+        <td>
+        {
+        posts.filter((elem)=>{
+          if(search==""){
+            return elem
+          }
+          else if(elem.title.toLowerCase().includes(search.toLowerCase())){
+            return elem.title
+          }
+        }).map((eleM)=>{
+          return(
+            <div key={eleM.id}>
+              <tr>{eleM.title}</tr>
+            </div>
+          )
+        })
+      }
+        </td>
+      </table>
     </div>
-  )
-}
+  );
+};
 
-export default FetchAPi
+export default FetchAPi;

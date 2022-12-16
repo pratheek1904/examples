@@ -1,20 +1,13 @@
 import React, { useState } from 'react'
 
 const Toggle = () => {
-  const [mybtn,setmybtn]=useState("Toggle On")
-  const toggling=()=>{
-    if(mybtn=="Toggle On"){
-      setmybtn("Toggle Off")
-    }
-    else{
-      setmybtn("Toggle On")
-    }
-  }
+  const[val,setval]=useState(false)
   return (
     <div>
-      <button onClick={toggling}>{mybtn}</button>
+      <button onClick={()=>setval(!val)}>{val?"clicked":"click"}</button>
     </div>
   )
 }
 
 export default Toggle
+

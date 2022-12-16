@@ -1,49 +1,21 @@
-import React from 'react'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Useeffect = () => {
-  const[count,setCount]=useState(100)
-  const[data,setdata]=useState(10)
+  const[count,setcount]=useState(0)
+  const[val,setval]=useState(10)
+
   useEffect(()=>{
-   console.log("hello Partheek")
-  },[data])
+    console.log("First Count")
+  },[count])
   useEffect(()=>{
-    console.log("hello Partheek 2")
-   },[count])
+    console.log("Second count")
+  },[val])
   return (
     <div>
-      <h1>count: {count}</h1>
-      <h2>Data:{data}</h2>
-      <button onClick={()=>setCount(prevCount=>prevCount+1)}>Update counter</button>
-      <button onClick={()=>setdata(data+1)}>Update data</button>
+      <h1>First count:{count} <button onClick={()=>setcount(count+1)}>Increment</button></h1>
+      <h1>Second count:{val}<button onClick={()=>setval(val+1)}>Decrement</button></h1>
     </div>
   )
 }
 
 export default Useeffect
-
- 
-// import React, { useEf<h1>fect, useState } from "react";
-
-// const Useeffect = () => {
-//   const [count, setCount] = useState(0);
-
-//   useEffect(() => {
-//     if (count) {
-//       document.title = `${count}`;
-//     } else {
-//       document.title = ``;
-//     }
-//   }, [count]);
-//   const handleClick = () => {
-//     setCount(count + 1);
-//   };
-//   return (
-//     <div>
-//       <button onClick={handleClick}>Click me {count}</button>
-//     </div>
-//   );
-// };
-
-// export default Useeffect;

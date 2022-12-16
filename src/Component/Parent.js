@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import Parentchild from './Parentchild'
 
 const Parent = () => {
-    const[value,setvalue]=useState("hello Praent")
+  const[count,setCount]=useState(0)
   return (
     <div>
-      <h1>{value}</h1>
-      <Parentchild name={setvalue}/>
+    <h1>{count}</h1>
+      <Parentchild val={setCount}/>
     </div>
   )
 }

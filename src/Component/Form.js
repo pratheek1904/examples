@@ -1,48 +1,48 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from "react";
 
 const Form = () => {
-  const[myval,setmyval]=useState("")
-  const[todo,setodo]=useState([])
+  const [myvalue, setmyvalue] = useState("");
+  const [todo, setTodo] = useState([]);
 
-  const todoSubmit=(e)=>{
-    e.preventDefault()
-    const myarray={id:new Date().getTime().toString(),myval}
-    setodo([...todo,myarray])
-    console.log(myarray)
-  }
-  const todoRemove=(id)=>{
-    const removed=todo.filter((val)=>{
-      return val.id!==id
-    })
-    setodo(removed)
-  }
+  const submitTodo = (e) => {
+    e.preventDefault();
+    if (myvalue) {
+      const newarr = { id: new Date().getTime().toString(), myvalue };
+      setTodo([...todo, newarr]);
+      setmyvalue("");
+    } else {
+      alert("Enter a Todo");
+    }
+  };
+  const todoRemove = (id) => {
+    const removed = todo.filter((val) => {
+      return val.id !== id;
+    });
+    setTodo(removed);
+  };
   return (
     <div>
-      <h1>Todo Application</h1>
-      <form onSubmit={todoSubmit}>
+      <form onSubmit={submitTodo}>
         <input
           type="text"
-          value={myval}
-          onChange={(e)=>setmyval(e.target.value)}
-          placeholder='Enter Todo'
+          placeholder="Enter Todo"
+          value={myvalue}
+          onChange={(e) => setmyvalue(e.target.value)}
         />
-        <input
-          type="Submit"
-        />
+        <button>Add</button>
       </form>
-      {
-        todo.map((elem)=>{
-         return(
+      {todo.map((elem) => {
+        return (
           <div key={elem.id}>
-            <p>{elem.myval}<button onClick={()=>todoRemove(elem.id)}>Remove</button> </p>
+            <p>
+              {elem.myvalue}
+              <button onClick={() => todoRemove(elem.id)}>Remove</button>
+            </p>
           </div>
-         )
-        })
-      }
+        );
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default Form
-
+export default Form;

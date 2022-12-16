@@ -1,20 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 const Useref = () => {
-  const[myval,setmyval]=useState("")
-  const count=useRef(0)
-  useEffect(()=>{
-    count.current=count.current+1
-  })
+
+const count=useRef(0)
+const[myval,setmyval]=useState("")
+useEffect(()=>{
+  count.current=count.current+1
+},[count.current])
   return (
     <div>
-      <input
-        type="text"
-        placeholder='Enter here...'
-        value={myval}
-        onChange={(e)=>setmyval(e.target.value)}
-      />
-      <p>The number of letters entered are: {count.current}</p>
+    <input
+      type="text"
+      placeholder="Type here"
+      value={myval}
+      onChange={(e)=>setmyval(e.target.value)}
+    />
+      <h1>{count.current}</h1>
     </div>
   )
 }

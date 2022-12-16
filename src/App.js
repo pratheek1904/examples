@@ -1,10 +1,10 @@
 import "./App.css";
-import LoginForm from "./Component/LoginForm";
+import FetchAPi from "./Component2/FetchAPi";
 
 function App() {
   return (
-    <div className="Appp">
-  <LoginForm/>
+    <div className="App">
+      <FetchAPi/>
     </div>
   );
 }

@@ -1,44 +1,44 @@
 import React from "react";
-import "../App.css"
-const Table1=()=> {
-    const details=[
-                {
-                    name:"Pratheek",
-                    id:113
-                },{
-                    name:"Mohan",
-                    id:75
-                },{
-                    name:"nithin",
-                    id:100
-                }
-        ]
-    return (
-    
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>id</th>
-          </tr>
-          <tr>{
-            details.map((elem)=>{
-                return(
-                <td>{elem.name}</td>)
-            })
-          }
-         </tr>
-         <tr>
-         {
-            details.map((elem)=>{
-                return(
-                <td>{elem.id}</td>)
-            })
-          }
-         </tr>
-        </table>
-      
-    );
-  }
-    
-  export default Table1
+import { useEffect } from "react";
+import { useState } from "react";
 
+const Table = () => {
+  const [post, setpost] = useState([]);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setpost(data);
+      });
+  });
+  return <div>
+  <table>
+    <tr>
+        <th>id</th>
+        <th>title</th>
+    </tr>
+    <td rowSpan={0}>
+        {
+            post.map((elem)=>{
+                return(
+                    <tr>{elem.id}</tr>
+                )
+            })
+        }
+    </td>
+    <td colSpan={0}>
+    {
+            post.map((elem)=>{
+                return(
+                    <tr rowSpan={0}>{elem.title}</tr>
+                )
+            })
+        }
+    </td>
+  </table>
+  </div>;
+};
+
+export default Table;

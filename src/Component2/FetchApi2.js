@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 
 const FetchApi2 = () => {
     const[posts,setposts]=useState([])
-   const getUsers=async()=>{
-    const response=await fetch('https://jsonplaceholder.typicode.com/todos')
-    const data=await response.json()
-    setposts(data)
-   }
+ const getUsers=async()=>{
+  const response=await fetch("https://jsonplaceholder.typicode.com/todos")
+  const data=await response.json()
+  setposts(data)
+ }
     useEffect(()=>{
         getUsers()
     },[])
