@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react";
 const ApiFetch = () => {
   const [posts, setposts] = useState([]);
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    fetch("https://jsonplaceholder.typicode.com/todos",{
+      headers:{
+        id:'2337383882883'
+      }
+    })
       .then((res) => {
         return res.json();
       })
@@ -11,34 +15,45 @@ const ApiFetch = () => {
         setposts(data);
       });
   });
+
+  const putpostEvent=()=>{
+    const data={
+      name:"Pratheek",
+      USN:113,
+      age:21
+    }
+    fetch("https://jsonplaceholder.typicode.com/todos",{
+      method:"POST",
+      headers:{
+        'content-Type':'application/json',
+        'Access-control-allow-Origin':'*'
+      },
+      body:JSON.stringify(data)
+    })
+    .then((res) => {
+      if(res.status==200){
+        alert("success")
+      }
+      return res.json();
+    })
+    .then((data) => {
+      setposts(data);
+    });
+   
+  }
+
   return (
     <div>
-      <table>
-       <tbody>
-       <tr>
-          <th>Id</th>
-          <th>title</th>
-        </tr>
-        <td>
-          {posts.map((elem) => {
-            return (
-              <div key={elem.id}>
-                <tr>{elem.id}</tr>
-              </div>
-            );
-          })}
-        </td>
-        <td>
-          {posts.map((elem) => {
-            return (
-              <div key={elem.id}>
-                <tr>{elem.title}</tr>
-              </div>
-            );
-          })}
-        </td>
-       </tbody>
-      </table>
+      {
+        posts.map((elem)=>{
+          return(
+            <div key={elem.id}>
+              <p>{elem.title}</p>
+            </div>
+          )
+        })
+      }
+      <button onClick={putpostEvent}>submit</button>
     </div>
   );
 };

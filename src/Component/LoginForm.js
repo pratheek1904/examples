@@ -29,9 +29,21 @@ const LoginForm = () => {
       return value.id !== id;
     });
     setmyarray(removed);
-    
+    setnote(true)
   };
-
+const handleEdit=(id)=>{
+  const edit=myarray.filter((elem)=>{
+    return elem.id===id
+  })
+  console.log(edit)
+  settitle(edit[0].title)
+  settext(edit[0].text)
+  const removed = myarray.filter((value) => {
+    return value.id !== id;
+  });
+  setmyarray(removed);
+  setnote(true)
+}
   return (
     <>
       <div className="container">
@@ -42,10 +54,7 @@ const LoginForm = () => {
             type="text"
             value={title}
             onChange={(e) => settitle(e.target.value)}
-            placeholder="Enter title"
-          />
-          <br />
-          <br />
+            placeholder="Enter title"/><br /><br />
           <textarea
             className="text"
             type="text"
@@ -65,15 +74,19 @@ const LoginForm = () => {
           <div className="destination">
             {myarray.map((elem) => {
               return (
-                <div>
+                <div key={elem.id}>
                   <h1>Your Notes</h1>
-                  <div key={elem.id}>
+                  <div>
                     <h2>{elem.title}</h2>
                     <p>{elem.text} </p>
                     <button
                       className="button"
-                      onClick={() => handleRemove(elem.id)}>Remove</button>
+                      onClick={() => handleRemove(elem.id)}><i className="fa-solid fa-trash"></i></button>&nbsp;
+                    <button 
+                    className="button" 
+                    onClick={()=>handleEdit(elem.id)}><i className="fa-solid fa-pen-to-square"></i></button>
                   </div>
+             
                 </div>
               );
             })}

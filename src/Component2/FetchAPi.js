@@ -27,16 +27,18 @@ const FetchAPi = () => {
         <td>
         {
         posts.filter((elem)=>{
-          if(search==""){
+          if(search===""){
             return elem
           }
           else if(elem.title.toLowerCase().includes(search.toLowerCase())){
             return elem.title
           }
+          else
+          return " "
         }).map((eleM)=>{
           return(
             <div key={eleM.id}>
-              <tr>{eleM.id}</tr>
+              <tr >{eleM.id}</tr>
             </div>
           )
         })
@@ -45,12 +47,14 @@ const FetchAPi = () => {
         <td>
         {
         posts.filter((elem)=>{
-          if(search==""){
+          if(search===""){
             return elem
           }
           else if(elem.title.toLowerCase().includes(search.toLowerCase())){
             return elem.title
           }
+          else
+          return " "
         }).map((eleM)=>{
           return(
             <div key={eleM.id}>

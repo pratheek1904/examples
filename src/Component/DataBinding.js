@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 
 const DataBinding = () => {
-  const[myvalue,setmyvalue]=useState("")
+  const[val,setval]=useState("")
+
   return (
     <div>
       <input
         type="text"
-        placeholder="Enter Text"
-        value={myvalue}
-        onChange={(e)=>setmyvalue(e.target.value)}
+        placeholder='Enter here'
+        value={val}
+        onChange={(e)=>setval(e.target.value)}
       />
-      <p>The input entered is {myvalue}</p>
+      <p>{val}</p>
     </div>
   )
 }
